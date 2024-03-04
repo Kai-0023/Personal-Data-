@@ -245,7 +245,3 @@ let paddleWidth = 250
 
 	}
 
-
-		image(ufo, windowWidth/2, windowHeight/2, 500, 500)
-
-	}
