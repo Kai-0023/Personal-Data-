@@ -1,5 +1,4 @@
-	let paddleWidth = 200
-
+let paddleWidth = 250
 	let ufo
 
 	let ufoX = []
@@ -38,6 +37,7 @@
 		ufo = loadImage('ufo.png')
 		goodArray = loadImage('goodalien.png')
 		badArray = loadImage('badalien.png')
+		galaxy = loadImage('galaxybackground.png')
 	}
 
 	function setup(){
@@ -52,24 +52,24 @@
 		for(let i=0; i<1; i++){
 			ufoX.push(windowWidth/2)
 			ufoY.push(windowHeight/2)
-			xSpeed.push(2)
+			xSpeed.push(1)
 			ySpeed.push(2)
 		}
 
-		for(let i=0;i<5;i++){
+		for(let i=0;i<20;i++){
 
 			goodX.push(random(windowWidth))
 			goodY.push(random(windowHeight))
-			goodXSpeed.push(.500)
-			goodYSpeed.push(.500)
+			goodXSpeed.push(1)
+			goodYSpeed.push(1)
 
 		}
-		for(let i=0;i<1;i++){
+		for(let i=0;i<10;i++){
 
 			badX.push(random(windowWidth))
 			badY.push(random(windowHeight))
-			badXSpeed.push(1.25)
-			badYSpeed.push(1.25)
+			badXSpeed.push(1)
+			badYSpeed.push(1)
 			
 		}
 
@@ -89,8 +89,8 @@
 
 
 	function startGame(){
-		background(0)
-
+	
+	image(galaxy, windowWidth/2, windowHeight/2, windowWidth, windowHeight)
 
 		//paddle
 		rect(mouseX, windowHeight-20, paddleWidth, 40,30,30,30,30)
@@ -98,7 +98,15 @@
 
 		fill(255)
 		textSize(40)
-		text('Tag the Furby! Your score is ' + score + ' points!!!', 0, 100 )
+		text('Catch aliens '+ score + ' points!!!', windowWidth/2-300,100)
+
+		fill(255)
+		textSize(20)
+		text('Good alien = +2 points',windowWidth-300,50)
+			text('Bad alien = -1 point',windowWidth-300, 100)
+			image(goodArray, windowWidth-80,40,30,30)
+			image(badArray, windowWidth-100,100,30,30)
+
 
 
 		//image(furby, furbyX, furbyY, 30, 30)
@@ -156,7 +164,7 @@
 			//moving good array
 				goodX[i] = goodX[i] + goodXSpeed[i]
 				goodY[i] = goodY[i] + goodYSpeed[i]
-			}
+			
 
 			if(goodX[i] >= windowWidth - 15 || goodX[i] <= 15){
 				goodXSpeed[i] = goodXSpeed[i] * -1
@@ -165,19 +173,23 @@
 				goodYSpeed[i] = goodYSpeed[i] * -1
 			}
 
-			if(goodY[i] <= 15){
-				goodYSpeed[i] = goodYSpeed[i] * -1
-			}
+			// if(goodY[i] <= 15){
+			// 	goodYSpeed[i] = goodYSpeed[i] * -1
+			// }
+			// if(goodY[i] >= 15){
+			// 	goodYSpeed[i] = goodYSpeed[i] * -1
+			// }
 
 			if(dist(ufoX[j], ufoY[j], goodX[i], goodY[i]) < 15){
 				goodX.splice(i, 1)
 				goodY.splice(i, 1)
 				goodXSpeed.splice(i, 1)
 				goodYSpeed.splice(i, 1)
-
+				score = score +2
 			}
 		}
 	}
+	
 
 		//moving bad array 
 		for(let i=0;i<badX.length; i++){
@@ -188,7 +200,7 @@
 			badX[i] = badX[i] + badXSpeed[i]
 			badY[i] = badY[i] +badYSpeed[i]
 		
-		}
+		
 		if(badX[i] >= windowWidth - 15 || badX[i] <= 15){
 			badXSpeed[i] = badXSpeed[i] * -1
 		}
@@ -196,28 +208,27 @@
 			badYSpeed[i] = badYSpeed[i] * -1
 		}
 
-		if(badY[i] <= 15){
-			badYSpeed[i] = badYSpeed[i] * -1
+		
 
-		}
 		if(dist(ufoX[j], ufoY[j], badX[i], badY[i]) < 15){
 			badX.splice(i, 1)
 			badY.splice(i, 1)
 			badXSpeed.splice(i, 1)
 			badYSpeed.splice(i, 1)
-
+			score --
 		}
+	}
 	}
 
 
 
 
-	if(score == 5){
+	if(score>=20){
 		winBool=true
 		startBool=false
 	}
 
-
+}
 
 
 
@@ -226,6 +237,14 @@
 		fill(255)
 		textSize(40)
 		text('You Win!!!', windowWidth/2, 50 )
+
+		image(ufo, windowWidth/2, windowHeight/2, 500, 500)
+
+		
+
+
+	}
+
 
 		image(ufo, windowWidth/2, windowHeight/2, 500, 500)
 
