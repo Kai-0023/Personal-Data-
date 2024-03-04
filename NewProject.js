@@ -140,7 +140,7 @@ let paddleWidth = 250
 			}
 
 			//did furby hit paddle if so reverse direction and multiply speed
-			if(ufoY[i] == windowHeight-55 && ufoX[i] < mouseX+paddleWidth/2 && ufoX[i] > mouseX-paddleWidth/2){
+			if(ufoY[i] >= windowHeight-55 && ufoX[i] < mouseX+paddleWidth/2 && ufoX[i] > mouseX-paddleWidth/2){
 				ySpeed[i] = ySpeed[i] * -1.5
 
 
@@ -244,4 +244,3 @@ let paddleWidth = 250
 
 
 	}
-
