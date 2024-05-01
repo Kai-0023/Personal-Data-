@@ -1,4 +1,3 @@
-	 
 let playerX 
 let playerY 
 
@@ -85,7 +84,7 @@ let y
 let z
 
 let timerX
-let speed = .005
+let speed = .015
 
 let spamcounter = 0 
 let spamcounterduo = 0
@@ -134,6 +133,12 @@ function preload(){
 	coding = loadImage('Images/computer.jpg')
 	data = loadImage('Images/data.jpg')
 	eating2= loadImage('Images/eating2.jpg')
+	spotify = loadImage('Images/spotify.png')
+	youtubeAd = loadImage('Images/youtube ad.jpg')
+	kais= loadImage('Images/funnypicfriends.jpeg')
+	datamind=loadImage('Images/dataming.jpg')
+	databackground=loadImage('Images/backgrounddata.webp')
+
 	//friend 3 ads
 	alec = loadImage('Images/alecpic.JPEG')
 	austin = loadImage('Images/austinpic.JPEG')
@@ -255,7 +260,7 @@ function setup(){
 	hangOutX = windowWidth/2+515
 	hangOutY = windowHeight/2-100
 
-	x = 105
+	x = 310
 	y = 0
 	z= 0
 
@@ -287,9 +292,11 @@ function draw(){
 
 
 function startGame(){
-	background(225)
+	background(x-500,x-700,x-900)
 	noStroke()
-text('Catch aliens '+ score + ' points!!!', windowWidth/2-300,100)
+	fill(30)
+	textSize(30)
+text('Classes that you have attended on time'+ score + '!!!',170,100)
 
 	 	//drawing road
 	fill(30)
@@ -404,7 +411,7 @@ triangle(330,windowHeight-100,475,463,515,462)
 
 	//timer
 	fill(x,y,z)
-	rect(100,35,500,30)
+	rect(300,0,900,30)
 
 	let deltaX = speed * deltaTime;
 
@@ -413,14 +420,14 @@ triangle(330,windowHeight-100,475,463,515,462)
 
   // Reset x to 0 if it's
   // greater than 100.
-	if (x > 600)  {
-		x = 100;
+	if (x > 1200)  {
+		x = 320;
 	}
 
   // Use x to set the circle's
   // position.
 
-	circle(x, 50, 20);
+	circle(x, 15, 20);
 
   // if (dist())
 
@@ -685,10 +692,10 @@ if( spamcounteropen2== 0 && dist(playerX,playerY,hotspotOpen2X,hotspotOpen2Y)<20
 		winBool=true
 		startBool=false
 	}
-	if (X>=599){
-		lossBool=true
-		startBool=false
-}
+// 	if (X>=599){
+// 		lossBool=true
+// 		startBool=false
+// }
 }
 
 
@@ -811,12 +818,6 @@ function openArea2(){
 }
 
 
-
-
-
-
-
-
 function keyPressed(){
 
 	if(keyCode === LEFT_ARROW){
@@ -865,6 +866,7 @@ function drawBuilding(x, y, width, height) {
 }
 	function winGame(){
 		background(0,0,255)
+		image(databackground,0,0, windowWidth,windowHeight)
 		for(i=0;i<2;i++){
 			image(jid,random(windowWidth/2+150, windowWidth/2+170),random(windowHeight),100,100)
 				image(enslaved,random(windowWidth),random(30,40),100,100)
@@ -874,6 +876,7 @@ function drawBuilding(x, y, width, height) {
 			image(aleyah,random(windowWidth),random(windowHeight),100,100)
 			image(gymAd,random(0,windowWidth),random(0,windowHeight),100,100)
 			image(player, random(windowWidth),random(windowHeight),100,100)
+			image(kais,random(windowWidth),random(windowHeight),100,100)
 
 		}
 		fill(225)
@@ -905,18 +908,6 @@ function drawBuilding(x, y, width, height) {
 
 	 	// 	if(dist(playerX, playerY, drawBuildingX, drawBuildingY) < 20){
 	 	// 		image()
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
